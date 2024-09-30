@@ -6,6 +6,7 @@
 #include "Yadro.h"
 
 
+
 int main ()
 {
     check_test ();
