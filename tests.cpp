@@ -24,9 +24,9 @@ enum ERRORS
     NO_REFERENCE
 };
 
-void check_test ()
+void check_test (void)
 {
-    char test_pathname[TEST_NAME_SIZE] = "tests/test1";
+    char test_pathname[TEST_NAME_SIZE] = "tests/test1"; // __FILE__ __LINE__
 
     int last_elem = 0;
 
@@ -65,7 +65,7 @@ int check_open (FILE** f_ptr, const char *name, const char *mode)
 int read_test (int *size, int test_input[MAX_TEST_SIZE], FILE *test_fd, int test_reference[MAX_TEST_SIZE])
 {
     int ch = 0;
-    while (tolower((ch = getc(test_fd))) != 'e') // Считает до конца слова size
+    while (ch != EOF && tolower((ch = getc(test_fd))) != 'e') // Считает до конца слова size
         //printf ("Ищу e\n");
 
     if (ch == EOF)
@@ -77,7 +77,7 @@ int read_test (int *size, int test_input[MAX_TEST_SIZE], FILE *test_fd, int test
 
     {
         char input[10] = {};
-        while (tolower((ch = getc(test_fd))) != 'd')
+        while ( ch != EOF && tolower((ch = getc(test_fd))) != 'd')
         {
          //printf ("Ищу d\n");
         }
@@ -102,7 +102,7 @@ int read_test (int *size, int test_input[MAX_TEST_SIZE], FILE *test_fd, int test
     }
 
 
-    while (tolower((ch = getc(test_fd))) != 'r');
+    while (ch != EOF && tolower((ch = getc(test_fd))) != 'r');
 
     if (ch == EOF)
         return NO_R;

@@ -35,14 +35,14 @@ int bin_search (int arr[], int size, int required_elem)
             return mid + 1;
         }
 
-        if (arr[mid-1] == required_elem)
+        if (mid != 0 && arr[mid-1] == required_elem)
         {
            // printf("Верну такое число: %d\n", mid);
             return mid;
         }
 
 
-        if (arr[mid-1] > required_elem) //Случай когда нужно поставить новый элемент в массив из двух элементов
+        if (mid != 0 && arr[mid-1] > required_elem) //Случай когда нужно поставить новый элемент в массив из двух элементов
         {
             //printf("Верну такое число: %d\n", mid);
             return mid;
